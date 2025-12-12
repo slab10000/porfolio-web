@@ -1,0 +1,301 @@
+@import './styles/animations.css';
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+  background: #0a0a0a;
+  color: #ffffff;
+}
+
+/* Hero Container - Parallax Scroll */
+.hero-container {
+  width: 100%;
+  height: 100vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* Scroll area to enable scrolling */
+.scroll-area {
+  height: 200vh;
+  width: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hero Content - Fixed viewport with parallax elements */
+.hero-content {
+  width: 100%;
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+  overflow: hidden;
+}
+
+/* Astronaut Component - Parallax Animation */
+.astronaut-container {
+  position: absolute;
+  cursor: pointer;
+  z-index: 10;
+  /* Start: center of screen, End: top-left corner */
+  --image-size-start: 200px;
+  --image-size-end: 80px;
+  
+  /* Position interpolation */
+  --top-start: 50vh;
+  --top-end: 2rem;
+  --left-start: 50vw;
+  --left-end: 2rem;
+  
+  top: calc(var(--top-start) + var(--scroll-progress, 0) * (var(--top-end) - var(--top-start)));
+  left: calc(var(--left-start) + var(--scroll-progress, 0) * (var(--left-end) - var(--left-start)));
+  
+  /* Transform to center initially, then no offset */
+  --translate-x: calc((1 - var(--scroll-progress, 0)) * -100px);
+  --translate-y: calc((1 - var(--scroll-progress, 0)) * -100px);
+  transform: translate(var(--translate-x), var(--translate-y));
+}
+
+.astronaut-image-wrapper {
+  position: relative;
+  /* Initial size: 200px, final size: 80px */
+  width: calc(200px - var(--scroll-progress, 0) * 120px);
+  height: calc(200px - var(--scroll-progress, 0) * 120px);
+  transition: all 0.1s linear;
+}
+
+.astronaut-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.astronaut-image:hover {
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: scale(1.05);
+}
+
+/* Space Suit Overlay */
+.space-suit-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  animation: suitAppear 0.5s ease-out;
+  pointer-events: none;
+}
+
+.space-suit-helmet {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 50%;
+  background: rgba(100, 150, 255, 0.3);
+  border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+  border: 2px solid rgba(100, 150, 255, 0.6);
+  box-shadow: 0 0 20px rgba(100, 150, 255, 0.4);
+}
+
+.space-suit-body {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 50%;
+  background: rgba(100, 150, 255, 0.2);
+  border-radius: 10px;
+  border: 2px solid rgba(100, 150, 255, 0.5);
+}
+
+/* Astronaut Name - Parallax Animation */
+.astronaut-name {
+  position: absolute;
+  font-weight: 300;
+  color: #ffffff;
+  white-space: nowrap;
+  /* Start: below astronaut (centered), End: next to astronaut (top-left) */
+  --name-size-start: 2rem;
+  --name-size-end: 1rem;
+  --name-size: calc(var(--name-size-start) - var(--scroll-progress, 0) * (var(--name-size-start) - var(--name-size-end)));
+  
+  /* Position relative to astronaut container */
+  --name-top-offset-start: calc(100px + 1rem); /* Below image when centered */
+  --name-top-offset-end: 0.5rem; /* Next to image when top-left */
+  --name-left-offset-start: 0; /* Centered below */
+  --name-left-offset-end: calc(80px + 1rem); /* Next to image */
+  
+  top: calc(var(--name-top-offset-start) - var(--scroll-progress, 0) * (var(--name-top-offset-start) - var(--name-top-offset-end)));
+  left: calc(var(--name-left-offset-start) + var(--scroll-progress, 0) * (var(--name-left-offset-end) - var(--name-left-offset-start)));
+  transform: translate(
+    calc((1 - var(--scroll-progress, 0)) * -50% + var(--scroll-progress, 0) * 0%),
+    0
+  );
+  font-size: var(--name-size);
+  transition: all 0.1s linear;
+}
+
+/* Planet Component - Corner Positioning with Parallax */
+.planet {
+  position: absolute;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.1s linear;
+}
+
+/* Planet Sizes - Shrink based on scroll */
+.planet-large {
+  --size-start: 400px;
+  --size-end: 80px;
+  --size-diff: calc(var(--size-start) - var(--size-end));
+  --planet-size: calc(var(--size-start) - var(--scroll-progress, 0) * var(--size-diff));
+  width: var(--planet-size);
+  height: var(--planet-size);
+}
+
+/* Planet Positions - Corner with only 1/4 visible */
+.planet-top-right {
+  /* Start: -75% of size (only 25% visible in corner) */
+  /* End: right side of center, horizontally aligned (Red planet - planet-1) */
+  --top-start: calc(var(--size-start) * -0.75);
+  --top-end: calc(50vh - var(--size-end) / 2);
+  --right-start: calc(var(--size-start) * -0.75);
+  /* End position: Red planet on the RIGHT side of center */
+  /* Center at: 50vw + gap + size/2 */
+  /* Right edge = center + size/2 = 50vw + gap + size/2 + size/2 = 50vw + gap + size */
+  /* right value = 100vw - right edge = 100vw - (50vw + gap + size) = 50vw - gap - size */
+  --gap: 2rem;
+  --right-end: calc(50vw - var(--gap) - var(--size-end));
+  
+  top: calc(var(--top-start) + var(--scroll-progress, 0) * (var(--top-end) - var(--top-start)));
+  right: calc(var(--right-start) + var(--scroll-progress, 0) * (var(--right-end) - var(--right-start)));
+}
+
+.planet-bottom-left {
+  /* Start: -75% of size (only 25% visible in corner) */
+  /* End: left side of center, horizontally aligned (Blue planet - planet-2) */
+  --top-start: calc(100vh - var(--size-start) * 0.25);
+  --top-end: calc(50vh - var(--size-end) / 2);
+  --left-start: calc(var(--size-start) * -0.75);
+  /* End position: Blue planet on the LEFT side of center */
+  /* Using left positioning: center at 50vw - gap - size/2, left edge = 50vw - gap - size */
+  --gap: 2rem;
+  --left-end: calc(50vw - var(--gap) - var(--size-end));
+  
+  top: calc(var(--top-start) + var(--scroll-progress, 0) * (var(--top-end) - var(--top-start)));
+  left: calc(var(--left-start) + var(--scroll-progress, 0) * (var(--left-end) - var(--left-start)));
+}
+
+/* Planet Colors */
+.planet-1 {
+  background: radial-gradient(circle at 30% 30%, #ff6b6b, #c92a2a);
+  box-shadow: 0 0 40px rgba(255, 107, 107, 0.4);
+}
+
+.planet-2 {
+  background: radial-gradient(circle at 30% 30%, #4ecdc4, #2d8a82);
+  box-shadow: 0 0 40px rgba(78, 205, 196, 0.4);
+}
+
+/* Spaceship Component */
+.spaceship {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin-top: -10px;
+  margin-left: -10px;
+  transform-origin: center center;
+}
+
+/* Update orbit animation to use planet size */
+.planet .spaceship {
+  --orbit-radius: calc(var(--planet-size) / 2 + 20px);
+  animation: orbit-dynamic 8s linear infinite;
+}
+
+.spaceship-body {
+  width: 100%;
+  height: 100%;
+  background: #ffd700;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #4ecdc4;
+  z-index: 20;
+  opacity: calc(1 - var(--scroll-progress, 0) * 5);
+  transition: opacity 0.2s ease;
+}
+
+.scroll-text {
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.scroll-arrow {
+  font-size: 1.5rem;
+  animation: bounce 1.5s ease-in-out infinite;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .planet-large {
+    --size-start: 300px;
+    --size-end: 60px;
+  }
+
+  .astronaut-image-wrapper {
+    width: calc(150px - var(--scroll-progress, 0) * 90px);
+    height: calc(150px - var(--scroll-progress, 0) * 90px);
+  }
+
+  .astronaut-name {
+    --name-size: calc(1.5rem - var(--scroll-progress, 0) * 0.7rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .planet-large {
+    --size-start: 250px;
+    --size-end: 60px;
+  }
+
+  .astronaut-name {
+    --name-size: calc(1.2rem - var(--scroll-progress, 0) * 0.4rem);
+  }
+}
