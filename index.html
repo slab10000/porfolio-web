@@ -1,237 +1,229 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blas Portfolio - Coming Soon</title>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blas Moreno | Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+            },
+            colors: {
+              swiss: {
+                black: '#111111',
+                white: '#FFFFFF',
+                gray: '#F4F4F5',
+                lime: '#CCFF00', // Acid Lime
+                blue: '#0044FF', // International Blue
+                orange: '#FF4400', // Safety Orange
+              }
+            },
+            backgroundImage: {
+              'grid-pattern': "linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)",
+            },
+            animation: {
+              'float-slow': 'float 8s ease-in-out infinite',
+              'spin-slow': 'spin 12s linear infinite',
+              'marquee': 'marquee 25s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-100%)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      body {
+        background-color: #FFFFFF;
+        color: #111111;
+        overflow-x: hidden;
+      }
+      
+      /* Swiss Grid Background */
+      .bg-grid {
+        background-size: 40px 40px;
+        background-image: linear-gradient(to right, #f1f1f1 1px, transparent 1px),
+                          linear-gradient(to bottom, #f1f1f1 1px, transparent 1px);
+      }
 
-        body {
-            background: linear-gradient(135deg, #0a0a2e 0%, #16213e 50%, #0f3460 100%);
-            overflow: hidden;
-            height: 100vh;
-            position: relative;
-        }
+      /* Frosted Glass - Light Theme */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
 
-        /* Stars background */
-        .stars {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background-image: 
-                radial-gradient(2px 2px at 20px 30px, #eee, transparent),
-                radial-gradient(2px 2px at 60px 70px, rgba(255,255,255,0.8), transparent),
-                radial-gradient(1px 1px at 50px 50px, #fff, transparent),
-                radial-gradient(1px 1px at 80px 10px, rgba(255,255,255,0.6), transparent),
-                radial-gradient(2px 2px at 90px 40px, #eee, transparent),
-                radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.8), transparent),
-                radial-gradient(1px 1px at 160px 30px, #fff, transparent);
-            background-repeat: repeat;
-            background-size: 200px 100px;
-            animation: twinkle 3s ease-in-out infinite alternate;
-        }
+      .glass-card-hover {
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .glass-card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      }
 
-        @keyframes twinkle {
-            from { opacity: 0.7; }
-            to { opacity: 1; }
-        }
+      /* Premium Glassmorphism Effect */
+      .glassmorphism-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
 
-        /* Planets */
-        .planet {
-            position: absolute;
-            border-radius: 50%;
-            filter: drop-shadow(0 0 0.8vw rgba(255, 255, 255, 0.4)) 
-                    drop-shadow(0 0 1.5vw rgba(255, 255, 255, 0.2));
-        }
+      .glassmorphism-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.5),
+          transparent
+        );
+      }
 
-        .planet img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            border-radius: 50%;
-        }
+      .glassmorphism-card:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.25) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 
+          0 12px 40px 0 rgba(0, 0, 0, 0.15),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
 
-        .planet1 {
-            width: 8vw;
-            height: 8vw;
-            min-width: 60px;
-            min-height: 60px;
-            top: 20%;
-            left: 10%;
-            animation: float1 8s ease-in-out infinite;
-            z-index: 2;
-        }
+      /* Premium Glassmorphism with enhanced effects */
+      .glassmorphism-premium {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.25) 0%,
+          rgba(255, 255, 255, 0.1) 50%,
+          rgba(255, 255, 255, 0.08) 100%
+        );
+        backdrop-filter: blur(24px) saturate(180%);
+        -webkit-backdrop-filter: blur(24px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.12),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.6),
+          inset 0 -1px 0 0 rgba(255, 255, 255, 0.2),
+          0 0 0 1px rgba(255, 255, 255, 0.1) inset;
+        position: relative;
+        overflow: hidden;
+      }
 
-        .planet2 {
-            width: 6vw;
-            height: 6vw;
-            min-width: 50px;
-            min-height: 50px;
-            top: 60%;
-            left: 30%;
-            animation: float2 6s ease-in-out infinite;
-        }
+      .glassmorphism-premium::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: left 0.5s ease;
+      }
 
-        .planet3 {
-            width: 10vw;
-            height: 10vw;
-            min-width: 80px;
-            min-height: 80px;
-            top: 10%;
-            right: 20%;
-            animation: float3 10s ease-in-out infinite;
-            z-index: 2;
-        }
+      .glassmorphism-premium:hover::before {
+        left: 100%;
+      }
 
-        .planet4 {
-            width: 7vw;
-            height: 7vw;
-            min-width: 60px;
-            min-height: 60px;
-            bottom: 15%;
-            right: 10%;
-            animation: float4 7s ease-in-out infinite;
-            z-index: 2;
-        }
+      .glassmorphism-premium:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.35) 0%,
+          rgba(255, 255, 255, 0.15) 50%,
+          rgba(255, 255, 255, 0.12) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.5);
+        box-shadow: 
+          0 16px 48px 0 rgba(0, 0, 0, 0.18),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.7),
+          inset 0 -1px 0 0 rgba(255, 255, 255, 0.3),
+          0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+        transform: translateY(-4px);
+      }
 
-        .planet5 {
-            width: 6.5vw;
-            height: 6.5vw;
-            min-width: 55px;
-            min-height: 55px;
-            bottom: 30%;
-            left: 20%;
-            animation: float5 9s ease-in-out infinite;
-        }
-
-        @keyframes float1 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-2vh) translateX(1vw); }
-        }
-
-        @keyframes float2 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(1.5vh) translateX(-1.5vw); }
-        }
-
-        @keyframes float3 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-2.5vh) translateX(-1vw); }
-        }
-
-        @keyframes float4 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(2vh) translateX(1.5vw); }
-        }
-
-        @keyframes float5 {
-            0%, 100% { transform: translateY(0) translateX(0); }
-            50% { transform: translateY(-1.5vh) translateX(-2vw); }
-        }
-
-        /* Astronaut container */
-        .astronaut-container {
-            position: absolute;
-            width: 15vw;
-            height: 20vh;
-            min-width: 150px;
-            min-height: 200px;
-            animation: flyAcross 8s linear infinite;
-            z-index: 10;
-            overflow: hidden;
-            clip-path: inset(0);
-        }
-
-        .astronaut-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-            filter: drop-shadow(0 0 0.5vw rgba(255, 255, 255, 0.5));
-        }
-
-        /* Fast animation across the screen */
-        @keyframes flyAcross {
-            0% {
-                left: -15vw;
-                top: 20%;
-                transform: rotate(0deg) scale(0.8);
-            }
-            15% {
-                top: 15%;
-                transform: rotate(10deg) scale(0.9);
-            }
-            30% {
-                top: 25%;
-                transform: rotate(-5deg) scale(1);
-            }
-            45% {
-                top: 10%;
-                transform: rotate(15deg) scale(0.9);
-            }
-            60% {
-                top: 30%;
-                transform: rotate(-10deg) scale(1);
-            }
-            75% {
-                top: 20%;
-                transform: rotate(5deg) scale(0.9);
-            }
-            90% {
-                top: 15%;
-                transform: rotate(-5deg) scale(0.8);
-            }
-            100% {
-                left: 100%;
-                top: 25%;
-                transform: rotate(0deg) scale(0.8);
-            }
-        }
-
-        /* Title */
-        h1 {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-family: 'Arial', sans-serif;
-            font-size: clamp(2rem, 5vw, 4rem);
-            text-shadow: 0 0 1vw rgba(255, 255, 255, 0.5);
-            z-index: 5;
-            pointer-events: none;
-            opacity: 0.3;
-        }
+      /* Typography Utilities */
+      .text-outline {
+        -webkit-text-stroke: 1px #000;
+        color: transparent;
+      }
+      
+      /* Gradient Orbs for SEF style */
+      .orb-1 {
+        background: radial-gradient(circle, rgba(204,255,0,0.8) 0%, rgba(204,255,0,0) 70%);
+      }
+      .orb-2 {
+        background: radial-gradient(circle, rgba(0,68,255,0.6) 0%, rgba(0,68,255,0) 70%);
+      }
+      
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fff;
+        border-left: 1px solid #eee;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #111;
+        border: 2px solid #fff;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #CCFF00;
+      }
     </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
 </head>
-<body>
-    <div class="stars"></div>
-    
-    <div class="planet planet1">
-        <img src="planets/planet1.png" alt="Planet 1">
-    </div>
-    <div class="planet planet2">
-        <img src="planets/planet2.png" alt="Planet 2">
-    </div>
-    <div class="planet planet3">
-        <img src="planets/planet3.png" alt="Planet 3">
-    </div>
-    <div class="planet planet4">
-        <img src="planets/planet4.png" alt="Planet 4">
-    </div>
-    <div class="planet planet5">
-        <img src="planets/planet1.png" alt="Planet 5">
-    </div>
-    
-    <div class="astronaut-container">
-        <img src="astronaut no bg.png" alt="Astronaut">
-    </div>
-    
-    <h1>COMMING SOON</h1>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
 </body>
 </html>
-
