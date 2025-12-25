@@ -1,17 +1,21 @@
 import React from 'react';
 import { PERSONAL_INFO } from '../constants';
 import { ArrowDownLeft, Asterisk } from 'lucide-react';
+import MacBook3D from './MacBook3D';
 
 const Hero: React.FC = () => {
   return (
     <section id="home" className="relative pt-32 pb-40 overflow-hidden min-h-screen flex flex-col justify-center">
+      
+      {/* 3D MacBook Model - Bottom Left */}
+      <MacBook3D />
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
         
         {/* Top Tagline */}
         <div className="flex items-center gap-4 mb-8">
            <div className="px-3 py-1 rounded-full border border-black text-xs font-bold uppercase tracking-widest bg-swiss-lime">
-              Available for work
+               A human in the loop
            </div>
            <div className="h-px bg-black/10 flex-grow"></div>
            <div className="text-xs font-mono text-gray-500">
