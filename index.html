@@ -4,6 +4,32 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Blas Moreno | Engineer</title>
+    <!-- Favicon - will be set dynamically based on color scheme -->
+    <link id="favicon" rel="icon" type="image/png" href="/astronaut/icons/helmet light mode.png" />
+    <script>
+      // Set favicon based on color scheme preference
+      (function() {
+        const favicon = document.getElementById('favicon');
+        const lightIcon = '/astronaut/icons/helmet light mode.png';
+        const darkIcon = '/astronaut/icons/helmet dark mode.png';
+        
+        function updateFavicon() {
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            favicon.href = darkIcon;
+          } else {
+            favicon.href = lightIcon;
+          }
+        }
+        
+        // Set initial favicon
+        updateFavicon();
+        
+        // Listen for changes in color scheme
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+        }
+      })();
+    </script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -41,7 +67,7 @@
               },
               marquee: {
                 '0%': { transform: 'translateX(0%)' },
-                '100%': { transform: 'translateX(-100%)' },
+                '100%': { transform: 'translateX(-50%)' },
               }
             }
           }

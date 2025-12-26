@@ -5,6 +5,8 @@ import { Menu, X } from 'lucide-react';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,18 +16,42 @@ const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    if (showToast) {
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000);
+      return () => clearTimeout(timer);
+    }
+  }, [showToast]);
+
+  const handleLogoClick = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    try {
+      await navigator.clipboard.writeText('https://blasmoreno.dev/');
+      setToastPosition({ x: e.clientX, y: e.clientY });
+      setShowToast(true);
+    } catch (err) {
+      console.error('Failed to copy URL:', err);
+    }
+  };
+
   return (
     <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled ? 'bg-white/80 backdrop-blur-md border-black/5 py-4' : 'bg-transparent border-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between">
           
           {/* Logo - Bold Typography */}
-          <div className="flex items-center gap-1 group cursor-pointer">
+          <div 
+            className="flex items-center gap-1 group cursor-pointer"
+            onClick={handleLogoClick}
+            title="Click to copy URL"
+          >
             <div className="w-8 h-8 bg-swiss-black text-white flex items-center justify-center font-display font-bold text-sm rounded-lg group-hover:bg-swiss-lime group-hover:text-black transition-colors">
               BM
             </div>
             <span className="font-display font-bold text-xl tracking-tight text-swiss-black">
-              BLAS<span className="text-gray-400">.DEV</span>
+              BLAS<span className={scrolled ? 'text-gray-400' : ''} style={!scrolled ? { color: '#d6fe51' } : {}}>.DEV</span>
             </span>
           </div>
           
@@ -76,6 +102,22 @@ const Navbar: React.FC = () => {
           </div>
         </div>
       )}
+
+      {/* Toast Notification */}
+      <div 
+        className={`fixed z-[100] transition-all duration-300 ease-out ${
+          showToast ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
+        }`}
+        style={{
+          left: `${toastPosition.x}px`,
+          top: `${toastPosition.y}px`,
+          transform: showToast ? 'translate(-50%, -100%) translateY(-10px)' : 'translate(-50%, -100%) translateY(-20px)'
+        }}
+      >
+        <div className="bg-swiss-black text-white px-4 py-3 rounded-lg shadow-lg border border-black/10 flex items-center gap-2 whitespace-nowrap">
+          <span className="text-sm font-medium">Webpage copied to clipboard</span>
+        </div>
+      </div>
     </nav>
   );
 };
