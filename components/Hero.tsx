@@ -4,6 +4,7 @@ import { ArrowDownLeft, Asterisk } from 'lucide-react';
 import skyImage from '../astronaut/sky.png';
 import landImage from '../astronaut/land.png';
 import astronautImage from '../astronaut/astronaut alone.png';
+import ShootingStars from './ShootingStars';
 
 const Hero: React.FC = () => {
   const [glassPosition, setGlassPosition] = useState({ top: 0, left: 0 });
@@ -204,6 +205,9 @@ const Hero: React.FC = () => {
             </div>
           </div>
         </div>
+        
+        {/* Shooting Stars - Over Glass, Under Land */}
+        <ShootingStars />
         
         {/* Land - Middle Layer */}
         <div className="absolute inset-0 w-full h-full z-20">

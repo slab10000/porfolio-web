@@ -352,6 +352,47 @@
           transform: none;
         }
       }
+
+      /* Shooting Stars */
+      .shooting-star {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 
+                    0 0 10px currentColor, 
+                    0 0 20px currentColor, 
+                    0 0 40px currentColor,
+                    0 0 60px currentColor;
+        filter: blur(1px);
+        animation: shooting-star-animate linear infinite;
+        opacity: 0;
+      }
+
+      .shooting-star::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 300px;
+        height: 1px;
+        background: linear-gradient(90deg, currentColor, transparent);
+      }
+
+      @keyframes shooting-star-animate {
+        0% {
+          transform: rotate(315deg) translateX(0);
+          opacity: 1;
+        }
+        70% {
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(315deg) translateX(-3000px);
+          opacity: 0;
+        }
+      }
     </style>
   <script type="importmap">
 {

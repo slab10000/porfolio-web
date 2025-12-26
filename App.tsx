@@ -23,7 +23,7 @@ const App: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <div className="text-center md:text-left">
              <p className="font-display font-bold text-2xl text-swiss-black tracking-tight">
-               BLAS<span className="text-swiss-lime">.DEV</span>
+               BLAS<span className="px-1.5 py-0.5 rounded" style={{ backgroundColor: '#d6fe51', color: '#000000' }}>.DEV</span>
              </p>
              <p className="text-gray-500 text-sm mt-1">
                Engineered in Indiana & Madrid.
