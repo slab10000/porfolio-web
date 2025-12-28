@@ -61,8 +61,8 @@ const Hero: React.FC = () => {
       const orbXInContainer = (orbXInImage / imgNaturalWidth) * displayedWidth + offsetX;
       const orbYInContainer = (orbYInImage / imgNaturalHeight) * displayedHeight + offsetY;
       
-      // Position glass element (center it on the orb, base glass is 600px)
-      const baseGlassSize = 600;
+      // Position glass element (center it on the orb, base glass is 850px)
+      const baseGlassSize = 1000;
       const glassSize = baseGlassSize * scaleFactor;
       
       setGlassPosition({
@@ -80,21 +80,24 @@ const Hero: React.FC = () => {
       const orb2XInContainer = (orb2XInImage / imgNaturalWidth) * displayedWidth + offsetX;
       const orb2YInContainer = (orb2YInImage / imgNaturalHeight) * displayedHeight + offsetY;
       
+      const baseGlassSize2 = 900;
+      const glassSize2 = baseGlassSize2 * scaleFactor;
+      
       setGlassPosition2({
-        top: orb2YInContainer - glassSize / 2,
-        left: orb2XInContainer - glassSize / 2,
-        width: glassSize,
-        height: glassSize
+        top: orb2YInContainer - glassSize2 / 2,
+        left: orb2XInContainer - glassSize2 / 2,
+        width: glassSize2,
+        height: glassSize2
       });
       
       // Position third glass element (on the left part)
-      const orb3XInImage = imgNaturalWidth * 0.36; // 15% from left (left part)
-      const orb3YInImage = imgNaturalHeight * 0.33; // Moved up more
+      const orb3XInImage = imgNaturalWidth * 0.30; // 15% from left (left part)
+      const orb3YInImage = imgNaturalHeight * 0.20; // Moved up more
       
       const orb3XInContainer = (orb3XInImage / imgNaturalWidth) * displayedWidth + offsetX;
       const orb3YInContainer = (orb3YInImage / imgNaturalHeight) * displayedHeight + offsetY;
       
-      const baseGlassSize3 = 1000; // Smaller size for third glass element
+      const baseGlassSize3 = 1200; // Smaller size for third glass element
       const glassSize3 = baseGlassSize3 * scaleFactor;
       
       setGlassPosition3({
