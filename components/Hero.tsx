@@ -7,9 +7,9 @@ import astronautImage from '../astronaut/astronaut alone.png';
 import ShootingStars from './ShootingStars';
 
 const Hero: React.FC = () => {
-  const [glassPosition, setGlassPosition] = useState({ top: 0, left: 0 });
-  const [glassPosition2, setGlassPosition2] = useState({ top: 0, left: 0 });
-  const [glassPosition3, setGlassPosition3] = useState({ top: 0, left: 0 });
+  const [glassPosition, setGlassPosition] = useState({ top: 0, left: 0, width: 0, height: 0 });
+  const [glassPosition2, setGlassPosition2] = useState({ top: 0, left: 0, width: 0, height: 0 });
+  const [glassPosition3, setGlassPosition3] = useState({ top: 0, left: 0, width: 0, height: 0 });
   const imageRef = useRef<HTMLImageElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -49,6 +49,9 @@ const Hero: React.FC = () => {
         offsetY = (containerHeight - displayedHeight) / 2;
       }
       
+      // Calculate scale factor based on the displayed width relative to natural width
+      const scaleFactor = displayedWidth / imgNaturalWidth;
+      
       // Position of orb in the image (adjusted: moved down and to the left)
       // Convert to pixels in the displayed image
       const orbXInImage = imgNaturalWidth * 0.68; // 90% from left = 10% from right (moved left)
@@ -58,11 +61,15 @@ const Hero: React.FC = () => {
       const orbXInContainer = (orbXInImage / imgNaturalWidth) * displayedWidth + offsetX;
       const orbYInContainer = (orbYInImage / imgNaturalHeight) * displayedHeight + offsetY;
       
-      // Position glass element (center it on the orb, glass is 600px)
-      const glassSize = 600;
+      // Position glass element (center it on the orb, base glass is 600px)
+      const baseGlassSize = 600;
+      const glassSize = baseGlassSize * scaleFactor;
+      
       setGlassPosition({
         top: orbYInContainer - glassSize / 2,
-        left: orbXInContainer - glassSize / 2
+        left: orbXInContainer - glassSize / 2,
+        width: glassSize,
+        height: glassSize
       });
       
       // Position second glass element (up and to the right)
@@ -75,7 +82,9 @@ const Hero: React.FC = () => {
       
       setGlassPosition2({
         top: orb2YInContainer - glassSize / 2,
-        left: orb2XInContainer - glassSize / 2
+        left: orb2XInContainer - glassSize / 2,
+        width: glassSize,
+        height: glassSize
       });
       
       // Position third glass element (on the left part)
@@ -85,10 +94,14 @@ const Hero: React.FC = () => {
       const orb3XInContainer = (orb3XInImage / imgNaturalWidth) * displayedWidth + offsetX;
       const orb3YInContainer = (orb3YInImage / imgNaturalHeight) * displayedHeight + offsetY;
       
-      const glassSize3 = 1000; // Smaller size for third glass element
+      const baseGlassSize3 = 1000; // Smaller size for third glass element
+      const glassSize3 = baseGlassSize3 * scaleFactor;
+      
       setGlassPosition3({
         top: orb3YInContainer - glassSize3 / 2,
-        left: orb3XInContainer - glassSize3 / 2
+        left: orb3XInContainer - glassSize3 / 2,
+        width: glassSize3,
+        height: glassSize3
       });
     };
 
@@ -127,10 +140,12 @@ const Hero: React.FC = () => {
         
         {/* Abstract 3D Glass Element - Between Sky and Land */}
         <div 
-          className="absolute w-[600px] h-[600px] animate-float-slow pointer-events-none z-10" 
+          className="absolute animate-float-slow pointer-events-none z-10" 
           style={{ 
             top: `${glassPosition.top}px`, 
             left: `${glassPosition.left}px`,
+            width: `${glassPosition.width}px`,
+            height: `${glassPosition.height}px`,
             animationDelay: '0s'
           }}
         >
@@ -154,10 +169,12 @@ const Hero: React.FC = () => {
         
         {/* Second Abstract 3D Glass Element - Cyan - Between Sky and Land */}
         <div 
-          className="absolute w-[600px] h-[600px] animate-float-slow pointer-events-none z-10" 
+          className="absolute animate-float-slow pointer-events-none z-10" 
           style={{ 
             top: `${glassPosition2.top}px`, 
             left: `${glassPosition2.left}px`,
+            width: `${glassPosition2.width}px`,
+            height: `${glassPosition2.height}px`,
             animationDelay: '2.5s'
           }}
         >
@@ -181,10 +198,12 @@ const Hero: React.FC = () => {
         
         {/* Third Abstract 3D Glass Element - Purple to Pink - Between Sky and Land */}
         <div 
-          className="absolute w-[770px] h-[770px] animate-float-slow pointer-events-none z-10" 
+          className="absolute animate-float-slow pointer-events-none z-10" 
           style={{ 
             top: `${glassPosition3.top}px`, 
             left: `${glassPosition3.left}px`,
+            width: `${glassPosition3.width}px`,
+            height: `${glassPosition3.height}px`,
             animationDelay: '5s'
           }}
         >

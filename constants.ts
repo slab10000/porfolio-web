@@ -1,5 +1,7 @@
 import { Experience, Project, SkillCategory, Education } from './types';
 import { Layers, Rocket, Code, Database, Cpu, BrainCircuit } from 'lucide-react';
+import project1Image from './project images/project 1 image.png';
+import project2Image from './project images/project 2 - Roman empire counter.png';
 
 export const PERSONAL_INFO = {
   name: "Blas Moreno Laguna",
@@ -49,7 +51,7 @@ export const PROJECTS: Project[] = [
     title: "Rocket Software (STAR UC3M)",
     techStack: ["C++", "Embedded Systems", "Telemetry"],
     description: "Developed embedded flight software and telemetry visualization tools for university rocketry.",
-    imagePlaceholder: "https://picsum.photos/seed/rocket/600/400"
+    imagePlaceholder: project1Image
   },
   {
     title: "ROS & Edge Computing Research",
@@ -61,7 +63,7 @@ export const PROJECTS: Project[] = [
     title: "Roman Empire Counter (App)",
     techStack: ["Kotlin", "Jetpack Compose", "Android"],
     description: "Designed and deployed an Android App independently, available on the App Store.",
-    imagePlaceholder: "https://picsum.photos/seed/mobile/600/400"
+    imagePlaceholder: project2Image
   },
   {
     title: "AI & Image Recognition",

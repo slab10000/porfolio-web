@@ -92,23 +92,17 @@ const ShootingStars: React.FC = () => {
 
   // Base background stars (reduced ratio)
   const baseStars = useMemo(() => {
-    return Array.from({ length: 6 }).map((_, i) => {
-      const startsFromTop = Math.random() > 0.5;
-      let top, right;
-      if (startsFromTop) {
-        top = `${-20 - Math.random() * 20}%`; 
-        right = `${-20 + Math.random() * 120}%`;
-      } else {
-        top = `${-20 + Math.random() * 120}%`;
-        right = `${-20 - Math.random() * 20}%`;
-      }
+    return Array.from({ length: 20 }).map((_, i) => {
+      // Always start from top
+      const top = `${-20 - Math.random() * 20}%`; 
+      const right = `${-10 + Math.random() * 120}%`; // From -10% to 110% to cover full width
 
       return {
         id: `base-${i}`,
         color: neonColors[Math.floor(Math.random() * neonColors.length)],
         top,
         right,
-        delay: `${Math.random() * 15}s`, // Even more spread out
+        delay: `${Math.random() * 10}s`, // Slightly faster frequency
         duration: `${2 + Math.random() * 3}s`,
       };
     });
