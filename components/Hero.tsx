@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { PERSONAL_INFO } from '../constants';
 import { ArrowDownLeft, Asterisk } from 'lucide-react';
-import skyImage from '../astronaut/sky.png';
-import landImage from '../astronaut/land.png';
+
 
 import ShootingStars from './ShootingStars';
 
@@ -135,7 +134,7 @@ const Hero: React.FC = () => {
         {/* Sky - Background Layer */}
         <div className="absolute inset-0 w-full h-full z-0">
           <img 
-            src={skyImage} 
+            src="/astronaut/sky.png" 
             alt="Sky background" 
             className="w-full h-full object-cover object-center"
           />
@@ -234,7 +233,7 @@ const Hero: React.FC = () => {
         {/* Land - Middle Layer */}
         <div className="absolute inset-0 w-full h-full z-20">
           <img 
-            src={landImage} 
+            src="/astronaut/land.png" 
             ref={imageRef}
             alt="Land" 
             className="w-full h-full object-cover object-center"
