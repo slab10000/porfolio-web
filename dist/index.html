@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Blas Moreno | Engineer</title>
+    <!-- Favicon - will be set dynamically based on color scheme -->
+    <link id="favicon" rel="icon" type="image/png" href="/assets/helmet%20light%20mode-C_bWW1WJ.png" />
+    <script>
+      // Set favicon based on color scheme preference
+      (function() {
+        const favicon = document.getElementById('favicon');
+        const lightIcon = '/astronaut/icons/helmet light mode.png';
+        const darkIcon = '/astronaut/icons/helmet dark mode.png';
+        
+        function updateFavicon() {
+          if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            favicon.href = darkIcon;
+          } else {
+            favicon.href = lightIcon;
+          }
+        }
+        
+        // Set initial favicon
+        updateFavicon();
+        
+        // Listen for changes in color scheme
+        if (window.matchMedia) {
+          window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateFavicon);
+        }
+      })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['Inter', 'sans-serif'],
+              display: ['Space Grotesk', 'sans-serif'],
+            },
+            colors: {
+              swiss: {
+                black: '#111111',
+                white: '#FFFFFF',
+                gray: '#F4F4F5',
+                lime: '#CCFF00', // Acid Lime
+                blue: '#0044FF', // International Blue
+                orange: '#FF4400', // Safety Orange
+              }
+            },
+            backgroundImage: {
+              'grid-pattern': "linear-gradient(to right, #f0f0f0 1px, transparent 1px), linear-gradient(to bottom, #f0f0f0 1px, transparent 1px)",
+            },
+            animation: {
+              'float-slow': 'float 8s ease-in-out infinite',
+              'spin-slow': 'spin 12s linear infinite',
+              'marquee': 'marquee 25s linear infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                '50%': { transform: 'translateY(-20px) rotate(5deg)' },
+              },
+              marquee: {
+                '0%': { transform: 'translateX(0%)' },
+                '100%': { transform: 'translateX(-50%)' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #FFFFFF;
+        color: #111111;
+        overflow-x: hidden;
+      }
+      
+      /* Swiss Grid Background */
+      .bg-grid {
+        background-size: 40px 40px;
+        background-image: linear-gradient(to right, #f1f1f1 1px, transparent 1px),
+                          linear-gradient(to bottom, #f1f1f1 1px, transparent 1px);
+      }
+
+      /* Experience Background Text - Repeating Pattern */
+      .experience-bg-pattern {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .experience-bg-text-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .experience-bg-text-row {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 0.85;
+      }
+
+      .experience-bg-text {
+        font-size: clamp(2.5rem, 8vw, 10rem);
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+        display: inline-block;
+      }
+
+      /* Frosted Glass - Light Theme */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid rgba(255, 255, 255, 0.8);
+      }
+
+      .glass-card-hover {
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      }
+      .glass-card-hover:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      }
+
+      /* Premium Glassmorphism Effect */
+      .glassmorphism-card {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.15) 0%,
+          rgba(255, 255, 255, 0.05) 100%
+        );
+        backdrop-filter: blur(20px) saturate(180%);
+        -webkit-backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.1),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .glassmorphism-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.5),
+          transparent
+        );
+      }
+
+      .glassmorphism-card:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.25) 0%,
+          rgba(255, 255, 255, 0.1) 100%
+        );
+        border-color: rgba(255, 255, 255, 0.4);
+        box-shadow: 
+          0 12px 40px 0 rgba(0, 0, 0, 0.15),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.5),
+          0 0 0 1px rgba(255, 255, 255, 0.1);
+        transform: translateY(-2px);
+      }
+
+      /* Premium Glassmorphism - Completely transparent, no blur to avoid color showing through */
+      .glassmorphism-premium {
+        background: transparent !important;
+        background-color: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border: 1px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.1);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .glassmorphism-premium::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: transparent;
+        transition: left 0.5s ease;
+      }
+
+      .glassmorphism-premium:hover::before {
+        left: 100%;
+      }
+
+      .glassmorphism-premium:hover {
+        background: transparent !important;
+        background-color: transparent !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        border-color: rgba(255, 255, 255, 0.25);
+        box-shadow: 
+          0 16px 48px 0 rgba(0, 0, 0, 0.15);
+        transform: translateY(-4px);
+      }
+
+      /* Typography Utilities */
+      .text-outline {
+        -webkit-text-stroke: 1px #000;
+        color: transparent;
+      }
+      
+      /* Gradient Orbs for SEF style */
+      .orb-1 {
+        background: radial-gradient(circle, rgba(204,255,0,0.8) 0%, rgba(204,255,0,0) 70%);
+      }
+      .orb-2 {
+        background: radial-gradient(circle, rgba(0,68,255,0.6) 0%, rgba(0,68,255,0) 70%);
+      }
+      
+      ::-webkit-scrollbar {
+        width: 10px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #fff;
+        border-left: 1px solid #eee;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #111;
+        border: 2px solid #fff;
+        border-radius: 5px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #CCFF00;
+      }
+
+      /* Liquid Glass Card Styles */
+      .liquid-glass-card {
+        position: relative;
+        border-radius: 1.5rem;
+        overflow: hidden;
+        transform: translateY(0);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+        backdrop-filter: blur(5px) saturate(120%);
+        -webkit-backdrop-filter: blur(5px) saturate(120%);
+      }
+
+      .liquid-glass-card:hover {
+        transform: translateY(-8px) scale(1.01);
+        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(15px) saturate(130%);
+        -webkit-backdrop-filter: blur(15px) saturate(130%);
+      }
+
+      .liquid-glass-content {
+        position: relative;
+        z-index: 10;
+        pointer-events: auto;
+      }
+
+      .liquid-glass-canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        border-radius: inherit;
+        overflow: hidden;
+        backdrop-filter: blur(12px) saturate(120%);
+        -webkit-backdrop-filter: blur(12px) saturate(120%);
+      }
+
+      .liquid-glass-canvas canvas {
+        width: 100% !important;
+        height: 100% !important;
+        display: block;
+      }
+
+      /* CSS Fallback for non-WebGL browsers */
+      .liquid-glass-fallback {
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.01) 0%,
+          rgba(255, 255, 255, 0.008) 50%,
+          rgba(255, 255, 255, 0.005) 100%
+        );
+        backdrop-filter: blur(12px) saturate(120%);
+        -webkit-backdrop-filter: blur(12px) saturate(120%);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        box-shadow: 
+          0 8px 32px 0 rgba(0, 0, 0, 0.02),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
+          inset 0 -1px 0 0 rgba(255, 255, 255, 0.02);
+        transform: translateY(0);
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
+      }
+
+      .liquid-glass-fallback:hover {
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.02) 0%,
+          rgba(255, 255, 255, 0.015) 50%,
+          rgba(255, 255, 255, 0.01) 100%
+        );
+        backdrop-filter: blur(15px) saturate(130%);
+        -webkit-backdrop-filter: blur(15px) saturate(130%);
+        border-color: rgba(255, 255, 255, 0.08);
+        box-shadow: 
+          0 20px 60px 0 rgba(0, 0, 0, 0.03),
+          inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
+          inset 0 -1px 0 0 rgba(255, 255, 255, 0.04);
+        transform: translateY(-8px) scale(1.01);
+      }
+
+      /* Performance optimizations for mobile */
+      @media (max-width: 768px) {
+        .liquid-glass-canvas {
+          opacity: 0.8;
+        }
+        
+        .liquid-glass-card:hover {
+          transform: translateY(-4px) scale(1.005);
+        }
+      }
+
+      /* Reduce motion for accessibility */
+      @media (prefers-reduced-motion: reduce) {
+        .liquid-glass-card,
+        .liquid-glass-fallback {
+          transition: none;
+        }
+        
+        .liquid-glass-card:hover,
+        .liquid-glass-fallback:hover {
+          transform: none;
+        }
+      }
+
+      /* Shooting Stars */
+      .shooting-star {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: #fff;
+        border-radius: 50%;
+        box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1), 
+                    0 0 10px currentColor, 
+                    0 0 20px currentColor, 
+                    0 0 40px currentColor,
+                    0 0 60px currentColor;
+        filter: blur(1px);
+        animation: shooting-star-animate linear infinite;
+        opacity: 0;
+      }
+
+      .shooting-star::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 300px;
+        height: 1px;
+        background: linear-gradient(90deg, currentColor, transparent);
+      }
+
+      @keyframes shooting-star-animate {
+        0% {
+          transform: rotate(315deg) translateX(0);
+          opacity: 1;
+        }
+        70% {
+          opacity: 1;
+        }
+        100% {
+          transform: rotate(315deg) translateX(-3000px);
+          opacity: 0;
+        }
+      }
+    </style>
+
+<link rel="stylesheet" href="/index.css">
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "lucide-react": "https://esm.sh/lucide-react@^0.562.0"
+  }
+}
+</script>
+  <script type="module" crossorigin src="/assets/index-6wonMGLb.js"></script>
+</head>
+  <body>
+    <div id="root"></div>
+</body>
+</html>

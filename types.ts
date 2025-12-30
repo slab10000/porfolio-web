@@ -1,0 +1,31 @@
+export interface Role {
+  title: string;
+  period: string;
+  description: string;
+  type: 'work' | 'research';
+}
+
+export interface Experience {
+  company: string;
+  totalPeriod?: string;
+  roles: Role[];
+}
+
+export interface Project {
+  title: string;
+  techStack: string[];
+  description: string;
+  link?: string;
+  imagePlaceholder?: string; // URL for picsum
+}
+
+export interface SkillCategory {
+  name: string;
+  skills: string[];
+}
+
+export interface Education {
+  degree: string;
+  institution: string;
+  period: string;
+}
