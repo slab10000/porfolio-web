@@ -3,7 +3,7 @@ import { PERSONAL_INFO } from '../constants';
 import { ArrowDownLeft, Asterisk } from 'lucide-react';
 import skyImage from '../astronaut/sky.png';
 import landImage from '../astronaut/land.png';
-import astronautImage from '../astronaut/astronaut alone.png';
+
 import ShootingStars from './ShootingStars';
 
 const Hero: React.FC = () => {
@@ -235,20 +235,13 @@ const Hero: React.FC = () => {
         <div className="absolute inset-0 w-full h-full z-20">
           <img 
             src={landImage} 
+            ref={imageRef}
             alt="Land" 
             className="w-full h-full object-cover object-center"
           />
         </div>
         
-        {/* Astronaut Alone - Foreground Layer */}
-        <div className="absolute inset-0 w-full h-full z-30">
-          <img 
-            ref={imageRef}
-            src={astronautImage} 
-            alt="Astronaut" 
-            className="w-full h-full object-cover object-center"
-          />
-        </div>
+
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">

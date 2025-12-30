@@ -69,11 +69,11 @@ const Experience: React.FC = () => {
                         >
                            {/* Connecting Line (Yellow) - Only if not last item */}
                            {rIndex !== exp.roles.length - 1 && (
-                               <div className="absolute left-[1.375rem] top-14 bottom-2 w-1 bg-swiss-lime/80 rounded-full"></div>
+                               <div className="absolute left-[1.375rem] top-14 bottom-2 w-1 bg-white/20 group-hover:bg-white rounded-full transition-colors duration-500"></div>
                            )}
 
                            {/* Hollow Circle - Thicker & Custom Color - No Numbers */}
-                           <div className="absolute left-0 top-0 w-12 h-12 rounded-full border-[6px] border-[#d6fe51] bg-transparent flex items-center justify-center z-10 shadow-sm">
+                           <div className="absolute left-0 top-0 w-12 h-12 rounded-full border-[6px] border-white/20 group-hover:border-white bg-transparent flex items-center justify-center z-10 shadow-sm transition-colors duration-500">
                            </div>
                            
                            <div className="pt-1">
