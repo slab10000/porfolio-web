@@ -2,7 +2,7 @@ import { Experience, Project, SkillCategory, Education } from './types';
 import { Layers, Rocket, Code, Database, Cpu, BrainCircuit } from 'lucide-react';
 import project1Image from './project images/project 1 image.png';
 import project2Image from './project images/project 2 - Roman empire counter.png';
-import project3Image from './project images/project 3 - GPT from scratch .png';
+import project3Image from './project images/project 3 - GPT from scratch.png';
 import project4Image from './project images/project 4 - ML algorithms.png';
 import project5Image from './project images/project 5 - Star uc3m.png';
 import project6Image from './project images/project 6 - Sophra.png';
@@ -55,36 +55,54 @@ export const PROJECTS: Project[] = [
     title: "ROS & Edge Computing Research",
     techStack: ["Docker", "ROS2", "5G", "Edge Computing"],
     description: "Designed and implemented a distributed robotic testbed achieving up to 92% higher computational efficiency and 40% better energy performance.",
+    links: [
+      { url: "https://www.linkedin.com/in/blas-moreno-laguna", label: "View on LinkedIn" }
+    ],
     imagePlaceholder: project1Image
   },
   {
     title: "Build and trained a GPT from scratch",
     techStack: ["Python", "Pytorch"],
     description: "Built a GPT from scratch using Pytorch and trained it on a dataset scraped from the offical IETF's RFC website.",
+    links: [
+      { url: "https://github.com/slab10000", label: "View Code" }
+    ],
     imagePlaceholder: project3Image
   },
   {
     title: "Roman Empire Counter (Android App)",
     techStack: ["Kotlin", "Jetpack Compose", "Android"],
     description: "Designed and deployed an Android App independently, available on the App Store.",
+    links: [
+      { url: "https://play.google.com/store/apps", label: "Play Store" }
+    ],
     imagePlaceholder: project2Image
   },
   {
     title: "AI & Image Recognition",
     techStack: ["Python", "TensorFlow", "Computer Vision"],
     description: "Created small-scale models and tools for image recognition and text processing.",
+    links: [
+      { url: "https://github.com/slab10000", label: "View Code" }
+    ],
     imagePlaceholder: project4Image
   },
   {
     title: "Rocket Software (STAR UC3M)",
     techStack: ["C++", "Embedded Systems", "Telemetry"],
     description: "Developed embedded flight software and telemetry visualization tools for university rocketry.",
+    links: [
+      { url: "https://github.com/slab10000", label: "View Project" }
+    ],
     imagePlaceholder: project5Image
   },
   {
     title: "Sophra App",
     techStack: ["React", "TypeScript", "Vite", "OpenAI API", "Tailwind CSS"],
     description: "Created a web app that allows users to improve their writing skills using OpenAI's API.",
+    links: [
+      { url: "https://github.com/slab10000", label: "View Code" }
+    ],
     imagePlaceholder: project6Image
   }
 ];
