@@ -87,7 +87,7 @@ const Navbar: React.FC = () => {
                 </a>
               ))}
             </div>
-            <a href="#contact" className="ml-4 px-6 py-3 bg-swiss-black text-white rounded-full font-medium text-sm hover:bg-swiss-lime hover:text-black transition-colors">
+            <a href="mailto:me@blasmoreno.dev" className="ml-4 px-6 py-3 bg-swiss-black text-white rounded-full font-medium text-sm hover:bg-swiss-lime hover:text-black transition-colors">
               Get in Touch
             </a>
           </div>

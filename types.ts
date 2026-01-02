@@ -34,3 +34,11 @@ export interface Education {
   institution: string;
   period: string;
 }
+
+export interface SocialMedia {
+  name: string;
+  url: string;
+  followers: number;
+  description?: string;
+  icon?: string;
+}
