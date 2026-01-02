@@ -1,4 +1,4 @@
-import { Experience, Project, SkillCategory, Education } from './types';
+import { Experience, Project, SkillCategory, Education, SocialMedia } from './types';
 import { Layers, Rocket, Code, Database, Cpu, BrainCircuit } from 'lucide-react';
 import project1Image from './project images/project 1 image.png';
 import project2Image from './project images/project 2 - Roman empire counter.png';
@@ -221,4 +221,25 @@ export const NAVIGATION_LINKS = [
   { name: 'Projects', href: '#projects', icon: Code },
   { name: 'Capabilities', href: '#skills', icon: Cpu },
   { name: 'Education', href: '#education', icon: BrainCircuit },
+];
+
+export const SOCIAL_MEDIA: SocialMedia[] = [
+  {
+    name: 'TikTok',
+    url: 'https://www.tiktok.com/@blas.ml',
+    followers: 0, // Update with actual follower count
+    description: 'Spanish account teaching AI and talking about technology.',
+  },
+  {
+    name: 'X (Twitter)',
+    url: 'https://x.com/Blasml_11',
+    followers: 0, // Update with actual follower count
+    description: 'Talking about projects and technology news',
+  },
+  {
+    name: 'YouTube',
+    url: 'https://www.youtube.com/@BlasMorenoLaguna',
+    followers: 0, // Update with actual follower count
+    description: 'Coming soon: long tutorials and videos teaching AI and engineering',
+  },
 ];
