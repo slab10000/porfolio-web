@@ -9,12 +9,14 @@ const Socials: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
-  // Generate repeating pattern of social media words
+  // Generate repeating pattern of social media words with randomized order
   const generateSocialPattern = (count: number): string => {
     const words = ['Tiktok', 'Youtube', 'X', 'LinkedIn'];
+    // Shuffle the words array for this line
+    const shuffledWords = [...words].sort(() => Math.random() - 0.5);
     let pattern = '';
     for (let i = 0; i < count; i++) {
-      const word = words[i % words.length];
+      const word = shuffledWords[i % shuffledWords.length];
       pattern += word;
     }
     return pattern;
