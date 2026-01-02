@@ -15,6 +15,7 @@ export interface Project {
   title: string;
   techStack: string[];
   description: string;
+  modalDescription?: string;
   links?: {
     url: string;
     label: string;

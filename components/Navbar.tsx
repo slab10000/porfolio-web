@@ -7,6 +7,7 @@ const Navbar: React.FC = () => {
   const [scrolled, setScrolled] = useState(false);
   const [showToast, setShowToast] = useState(false);
   const [toastPosition, setToastPosition] = useState({ x: 0, y: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,6 +15,24 @@ const Navbar: React.FC = () => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const checkModalState = () => {
+      setIsModalOpen(document.body.classList.contains('modal-open-mobile'));
+    };
+    
+    // Check initially
+    checkModalState();
+    
+    // Watch for changes
+    const observer = new MutationObserver(checkModalState);
+    observer.observe(document.body, {
+      attributes: true,
+      attributeFilter: ['class']
+    });
+    
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -37,7 +56,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${scrolled ? 'bg-white/80 backdrop-blur-md border-black/5 py-4' : 'bg-transparent border-transparent py-6'}`}>
+    <nav className={`fixed top-0 w-full z-50 transition-all duration-300 border-b ${isModalOpen ? 'hidden md:block' : 'block'} ${scrolled ? 'bg-white/80 backdrop-blur-md border-black/5 py-4' : 'bg-transparent border-transparent py-6'}`}>
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between">
           
