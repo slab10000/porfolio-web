@@ -177,7 +177,7 @@ export const PROJECTS: Project[] = [
       `The platform is fully deployed on Vercel and provides a seamless user experience from image upload to ` +
       `personalized learning exercises.`,
     links: [
-      { url: "https://github.com/slab10000", label: "View Code" }
+      { url: "https://sophra.app/", label: "View Code" }
     ],
     imagePlaceholder: project6Image
   }
