@@ -33,9 +33,9 @@ const App: React.FC = () => {
           </div>
           
           <div className="flex gap-6">
-             <a href="#" className="text-gray-500 hover:text-black font-medium">LinkedIn</a>
-             <a href="#" className="text-gray-500 hover:text-black font-medium">GitHub</a>
-             <a href="#" className="text-gray-500 hover:text-black font-medium">Email</a>
+             <a href="https://www.linkedin.com/in/blas-moreno-laguna/" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black font-medium">LinkedIn</a>
+             <a href="https://github.com/slab10000" target="_blank" rel="noopener noreferrer" className="text-gray-500 hover:text-black font-medium">GitHub</a>
+             <a href="mailto:me@blasmoreno.dev" className="text-gray-500 hover:text-black font-medium">Email</a>
           </div>
 
           <p className="text-gray-400 text-xs font-mono">

@@ -190,11 +190,11 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   },
   {
     name: "Frameworks & Tools",
-    skills: ["Jetpack Compose", "TensorFlow", "ROS2", "Git", "Docker"]
+    skills: ["Jetpack Compose", "TensorFlow", "ROS", "ROS2", "Git", "Docker"]
   },
   {
     name: "AI & Data",
-    skills: ["Machine Learning", "Neural Networks", "Data Analysis"]
+    skills: ["Python", "PyTorch", "TensorFlow", "Machine Learning", "Neural Networks", "Data Analysis"]
   },
   {
     name: "Soft Skills",

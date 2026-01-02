@@ -61,7 +61,7 @@ const Skills: React.FC = () => {
                
                <h3 className="text-3xl font-display font-bold mb-2 relative z-10">Ready to collaborate?</h3>
                <p className="font-medium mb-6 relative z-10 max-w-xs">
-                  Open for new opportunities in AI & Distributed Systems.
+                  Open for new opportunities!.
                </p>
                <a href={`mailto:me@blasmoreno.dev`} className="inline-block px-6 py-3 bg-black text-white font-bold rounded-full hover:scale-105 transition-transform">
                   Contact Me
