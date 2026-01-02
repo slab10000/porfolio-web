@@ -1,8 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { PROJECTS } from '../constants';
+import { Project } from '../types';
 import { ArrowUpRight } from 'lucide-react';
+import ProjectModal from './ProjectModal';
 
 const Projects: React.FC = () => {
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+
   return (
     <section id="projects" className="py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,7 +19,11 @@ const Projects: React.FC = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
           {PROJECTS.map((project, index) => (
-            <div key={index} className={`group ${index % 2 !== 0 ? 'md:translate-y-20' : ''}`}>
+            <div 
+                key={index} 
+                className={`group ${index % 2 !== 0 ? 'md:translate-y-20' : ''} cursor-pointer`}
+                onClick={() => setSelectedProject(project)}
+            >
                
                {/* Card Image */}
                <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] bg-swiss-gray mb-6">
@@ -56,6 +64,12 @@ const Projects: React.FC = () => {
           ))}
         </div>
       </div>
+
+      <ProjectModal 
+        isOpen={!!selectedProject} 
+        onClose={() => setSelectedProject(null)} 
+        project={selectedProject} 
+      />
     </section>
   );
 };

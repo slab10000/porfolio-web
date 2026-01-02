@@ -15,7 +15,12 @@ export interface Project {
   title: string;
   techStack: string[];
   description: string;
-  link?: string;
+  modalDescription?: string;
+  links?: {
+    url: string;
+    label: string;
+    icon?: any;
+  }[];
   imagePlaceholder?: string; // URL for picsum
 }
 
