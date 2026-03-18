@@ -1,5 +1,6 @@
 import React from 'react';
 import Background from './components/StarBackground';
+import Fireworks from './components/Fireworks';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Experience from './components/Experience';
@@ -10,6 +11,7 @@ import Skills from './components/Skills';
 const App: React.FC = () => {
   return (
     <div className="min-h-screen bg-white text-swiss-black font-sans selection:bg-swiss-lime selection:text-black">
+      <Fireworks />
       <Background />
       <Navbar />
       
