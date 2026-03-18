@@ -6,6 +6,7 @@ import project3Image from './project images/project 3 - GPT from scratch.png';
 import project4Image from './project images/project 4 - ML algorithms.png';
 import project5Image from './project images/project 5 - Star uc3m.png';
 import project6Image from './project images/project 6 - Sophra.png';
+import mistralHackathonImage from './project images/Mistral-Hackathon.png';
 
 export const PERSONAL_INFO = {
   name: "Blas Moreno Laguna",
@@ -15,7 +16,7 @@ export const PERSONAL_INFO = {
   linkedin: "linkedin.com/in/blas-moreno-laguna",
   github: "github.com/slab10000",
   bio: `Passionate Computer Engineer specializing in AI, pursuing a Master's at Purdue University Northwest. ` +
-    `Experienced in Android development, robotic systems, and distributed 5G edge computing. ` +
+    `Experienced in Android development, robotic systems, and distributed 5G edge computing, with recent recognition as the winner of the San Francisco edition of Mistral AI's Worldwide Hackathon. ` +
     `Driven by innovation and a desire to contribute to impactful technologies that shape the future.`
 };
 
@@ -57,6 +58,20 @@ export const EXPERIENCES: Experience[] = [
 ];
 
 export const PROJECTS: Project[] = [
+  {
+    title: "Mistral AI Hackathon winner SF",
+    techStack: ["Mistral AI", "React", "TypeScript", "Vite", "ElevenLabs"],
+    description: "Won the San Francisco edition of Mistral AI's Worldwide Hackathon with an agentic AI storybook for kids.",
+    modalDescription: `Drawn Worlds is a magical, voice-first interactive storybook where children co-create bedtime stories through drawing and speech. ` +
+      `I built the experience around an agentic storytelling loop: a central AI orchestrator interprets a child's drawing into a world model, generates the next story segment, decides when to ask for a new drawing or a spoken word, and dynamically advances the narrative in real time. ` +
+      `The project combines multimodal reasoning with synchronized media generation, using Mistral models for vision and orchestration, ElevenLabs for speech, sound effects, and music, and a polished React interface designed to feel like an enchanted book. ` +
+      `The project won the San Francisco edition of Mistral AI's Worldwide Hackathon.`,
+    links: [
+      { url: "https://github.com/slab10000/Mistral-AI-Hackathon-Winner_Drawn-Worlds", label: "View Code" },
+      { url: "https://worldwide-hackathon.mistral.ai/", label: "Hackathon" }
+    ],
+    imagePlaceholder: mistralHackathonImage
+  },
   {
     title: "ROS & Edge Computing Research",
     techStack: ["Docker", "ROS", "Edge Computing", "ROS2", "5G"],
