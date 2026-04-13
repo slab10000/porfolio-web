@@ -1,12 +1,12 @@
 import { Experience, Project, SkillCategory, Education, SocialMedia } from './types';
 import { Layers, Rocket, Code, Database, Cpu, BrainCircuit } from 'lucide-react';
-import project1Image from './project images/project 1 image.png';
-import project2Image from './project images/project 2 - Roman empire counter.png';
-import project3Image from './project images/project 3 - GPT from scratch.png';
-import project4Image from './project images/project 4 - ML algorithms.png';
-import project5Image from './project images/project 5 - Star uc3m.png';
-import project6Image from './project images/project 6 - Sophra.png';
-import mistralHackathonImage from './project images/Mistral-Hackathon.png';
+import project1Image from './project images/project 1 image.webp';
+import project2Image from './project images/project 2 - Roman empire counter.webp';
+import project3Image from './project images/project 3 - GPT from scratch.webp';
+import project4Image from './project images/project 4 - ML algorithms.webp';
+import project5Image from './project images/project 5 - Star uc3m.webp';
+import project6Image from './project images/project 6 - Sophra.webp';
+import mistralHackathonImage from './project images/Mistral-Hackathon.webp';
 
 export const PERSONAL_INFO = {
   name: "Blas Moreno Laguna",

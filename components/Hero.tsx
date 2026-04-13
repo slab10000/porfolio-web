@@ -156,7 +156,7 @@ const Hero: React.FC = () => {
 				{/* Sky - Background Layer */}
 				<div className="absolute inset-0 w-full h-full z-0">
 					<img
-						src="/astronaut/sky.png"
+						src="/astronaut/sky.webp"
 						alt="Sky background"
 						className="w-full h-full object-cover object-center"
 					/>
@@ -261,7 +261,7 @@ const Hero: React.FC = () => {
 				{/* Land - Middle Layer */}
 				<div className="absolute inset-0 w-full h-full z-20">
 					<img
-						src="/astronaut/land.png"
+						src="/astronaut/land.webp"
 						ref={imageRef}
 						alt="Land"
 						className="w-full h-full object-cover object-center"
