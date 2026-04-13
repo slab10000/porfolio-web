@@ -61,7 +61,8 @@ function sampleTextPixels(
 	const offscreen = document.createElement("canvas");
 	// Size font to fit the longest line within maxWidth
 	const longestLine = lines.reduce((a, b) => (a.length > b.length ? a : b), "");
-	const fontSize = Math.min(Math.floor(maxWidth / (longestLine.length * 0.52)), 100);
+	const maxFontSize = 100;
+	const fontSize = Math.min(Math.floor(maxWidth / (longestLine.length * 0.52)), maxFontSize);
 	const lineHeight = fontSize * 1.25;
 	const totalTextHeight = lineHeight * lines.length;
 
@@ -83,8 +84,8 @@ function sampleTextPixels(
 	const imageData = octx.getImageData(0, 0, offscreen.width, offscreen.height);
 	const points: { x: number; y: number }[] = [];
 
-	// Dense sampling for bold readable text
-	const step = Math.max(2, Math.floor(fontSize / 22));
+	// Dense sampling for crisp readable text
+	const step = Math.max(2, Math.floor(fontSize / 32));
 	for (let y = 0; y < offscreen.height; y += step) {
 		for (let x = 0; x < offscreen.width; x += step) {
 			const idx = (y * offscreen.width + x) * 4;
@@ -139,7 +140,7 @@ const Fireworks: React.FC = () => {
 
 		const createExplosion = (x: number, y: number) => {
 			const color = COLORS[Math.floor(Math.random() * COLORS.length)];
-			const count = 80 + Math.floor(Math.random() * 40);
+			const count = 50 + Math.floor(Math.random() * 30);
 			for (let i = 0; i < count; i++) {
 				const angle = (Math.PI * 2 * i) / count;
 				const speed = 2 + Math.random() * 5;
@@ -173,7 +174,8 @@ const Fireworks: React.FC = () => {
 
 		const createTextExplosion = (originX: number, originY: number) => {
 			const w = canvas.width;
-			const textMaxWidth = Math.min(w * 0.88, 1000);
+			const isMobile = w < 640;
+			const textMaxWidth = isMobile ? w * 0.92 : Math.min(w * 0.88, 1000);
 			const points = sampleTextPixels(
 				["#1 Mistral", "Hackathon SF"],
 				textMaxWidth,
@@ -194,7 +196,7 @@ const Fireworks: React.FC = () => {
 					vx: Math.cos(angle) * speed,
 					vy: Math.sin(angle) * speed,
 					color,
-					size: 3 + Math.random() * 2,
+					size: isMobile ? 1.2 + Math.random() * 0.8 : 1.8 + Math.random() * 1,
 					life: 1,
 					progress: 0,
 				});
@@ -206,11 +208,14 @@ const Fireworks: React.FC = () => {
 			if (cancelled) return;
 			const w = canvas.width;
 			const h = canvas.height;
+			// Avoid center area where text will appear - launch to sides
+			const side = Math.random() < 0.5;
+			const x = side ? w * 0.05 + Math.random() * w * 0.3 : w * 0.65 + Math.random() * w * 0.3;
 			rockets.push({
-				x: w * 0.15 + Math.random() * w * 0.7,
+				x,
 				y: h + 10,
 				vy: -(10 + Math.random() * 6),
-				targetY: h * 0.15 + Math.random() * h * 0.35,
+				targetY: h * 0.1 + Math.random() * h * 0.3,
 				color: COLORS[Math.floor(Math.random() * COLORS.length)],
 				exploded: false,
 				trail: [],
@@ -221,11 +226,12 @@ const Fireworks: React.FC = () => {
 			if (cancelled) return;
 			const w = canvas.width;
 			const h = canvas.height;
+			const isMobile = w < 640;
 			rockets.push({
 				x: w / 2,
 				y: h + 10,
 				vy: -14,
-				targetY: h * 0.38,
+				targetY: isMobile ? h * 0.3 : h * 0.38,
 				color: "#ffd700",
 				exploded: false,
 				trail: [],
@@ -235,8 +241,7 @@ const Fireworks: React.FC = () => {
 
 		// Regular rockets in the first 2 seconds
 		const launchTimes = [
-			0, 100, 250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1750,
-			1900,
+			0, 200, 450, 700, 950, 1200, 1500, 1800,
 		];
 		const timeouts = launchTimes.map((t) =>
 			window.setTimeout(launchRocket, t)
@@ -263,7 +268,7 @@ const Fireworks: React.FC = () => {
 			// Fade out: last 800ms → 0.55 to 0
 			const fadeInEnd = 600;
 			const fadeOutStart = totalDuration - 800;
-			const maxDarkness = 0.72;
+			const maxDarkness = 0.92;
 
 			if (elapsed < fadeInEnd) {
 				overlay.style.opacity = String((elapsed / fadeInEnd) * maxDarkness);
@@ -371,13 +376,13 @@ const Fireworks: React.FC = () => {
 						const ease = easeOutCubic(Math.min(1, t));
 						tp.x = tp.x + (tp.tx - tp.x) * (ease * 0.15);
 						tp.y = tp.y + (tp.ty - tp.y) * (ease * 0.15);
-					} else if (textElapsed < 2800) {
+					} else if (textElapsed < 2400) {
 						tp.x += (tp.tx - tp.x) * 0.3;
 						tp.y += (tp.ty - tp.y) * 0.3;
 					} else {
 						tp.x += (Math.random() - 0.5) * 1.5;
 						tp.y += (Math.random() - 0.5) * 1.5 + 0.3;
-						tp.life -= 0.025;
+						tp.life -= 0.04;
 					}
 
 					if (tp.life <= 0) {
@@ -386,7 +391,7 @@ const Fireworks: React.FC = () => {
 					}
 
 					const glowPulse =
-						textElapsed > 1200 && textElapsed < 2800
+						textElapsed > 1200 && textElapsed < 2400
 							? 0.85 +
 								0.15 *
 									Math.sin(textElapsed * 0.005 + i * 0.1)
@@ -397,7 +402,7 @@ const Fireworks: React.FC = () => {
 					ctx.fillStyle = tp.color;
 					ctx.globalAlpha = Math.max(0, tp.life * glowPulse);
 					ctx.shadowColor = tp.color;
-					ctx.shadowBlur = 12;
+					ctx.shadowBlur = 4;
 					ctx.fill();
 					ctx.shadowBlur = 0;
 					ctx.globalAlpha = 1;
