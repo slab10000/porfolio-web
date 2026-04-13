@@ -1,21 +1,26 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { EXPERIENCES } from '../constants';
 import LiquidGlassCard from './LiquidGlassCard';
 
 const Experience: React.FC = () => {
-  // Generate random pattern of words
-  const generateRandomPattern = (count: number): string => {
+  const backgroundRows = useMemo(() => {
     const words = ['Android', 'Robotics', 'TeamLeader'];
-    let pattern = '';
-    for (let i = 0; i < count; i++) {
-      const randomWord = words[Math.floor(Math.random() * words.length)];
-      pattern += randomWord;
-    }
-    return pattern;
-  };
+    return Array.from({ length: 15 }, () => {
+      let pattern = '';
+      for (let i = 0; i < 50; i++) {
+        const randomWord = words[Math.floor(Math.random() * words.length)];
+        pattern += randomWord;
+      }
+      return pattern;
+    });
+  }, []);
 
   return (
-    <section id="experience" className="py-24 relative overflow-hidden">
+    <section
+      id="experience"
+      className="py-24 relative overflow-hidden"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="mb-20 border-b border-black pb-8">
@@ -31,10 +36,10 @@ const Experience: React.FC = () => {
         {/* Large Background Text - Repeating Pattern */}
         <div className="absolute inset-0 z-0 overflow-hidden experience-bg-pattern">
           <div className="experience-bg-text-container">
-            {Array(15).fill(null).map((_, i) => (
+            {backgroundRows.map((pattern, i) => (
               <div key={i} className="experience-bg-text-row">
                 <span className="font-display font-black text-black/10 select-none pointer-events-none experience-bg-text">
-                  {generateRandomPattern(50)}
+                  {pattern}
                 </span>
               </div>
             ))}

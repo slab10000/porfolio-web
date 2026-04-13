@@ -105,6 +105,18 @@ const Fireworks: React.FC = () => {
 	const containerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
+		const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+		const hardwareConcurrency = navigator.hardwareConcurrency || 8;
+		const navigatorWithMemory = navigator as Navigator & { deviceMemory?: number };
+		const deviceMemory = navigatorWithMemory.deviceMemory || 8;
+		const alreadyPlayed = sessionStorage.getItem("portfolio-fireworks-played") === "true";
+
+		if (reducedMotion || hardwareConcurrency <= 4 || deviceMemory <= 4 || alreadyPlayed) {
+			return;
+		}
+
+		sessionStorage.setItem("portfolio-fireworks-played", "true");
+
 		const container = containerRef.current;
 		if (!container) return;
 

@@ -8,7 +8,11 @@ const Projects: React.FC = () => {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
   return (
-    <section id="projects" className="py-32 bg-white">
+    <section
+      id="projects"
+      className="py-32 bg-white"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '1400px' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="mb-20 border-b border-black pb-8">
@@ -33,6 +37,8 @@ const Projects: React.FC = () => {
                     src={project.imagePlaceholder} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
                   />
                   
                   {/* Floating Action Button */}

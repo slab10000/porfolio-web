@@ -5,13 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Blas Moreno | Engineer</title>
     <!-- Favicon - will be set dynamically based on color scheme -->
-    <link id="favicon" rel="icon" type="image/png" href="/astronaut/icons/helmet-light-mode.png" />
+    <link id="favicon" rel="icon" type="image/webp" href="/astronaut/icons/helmet-light-mode.webp" />
     <script>
       // Set favicon based on color scheme preference
       (function() {
         const favicon = document.getElementById('favicon');
-        const lightIcon = '/astronaut/icons/helmet-light-mode.png';
-        const darkIcon = '/astronaut/icons/helmet-dark-mode.png';
+        const lightIcon = '/astronaut/icons/helmet-light-mode.webp';
+        const darkIcon = '/astronaut/icons/helmet-dark-mode.webp';
         
         function updateFavicon() {
           if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
@@ -50,6 +50,7 @@
                 lime: '#CCFF00', // Acid Lime
                 blue: '#0044FF', // International Blue
                 orange: '#FF4400', // Safety Orange
+                red: '#FF2424', // Vivid Red
               }
             },
             backgroundImage: {
@@ -111,6 +112,35 @@
       }
 
       .experience-bg-text {
+        font-size: clamp(2.5rem, 8vw, 10rem);
+        letter-spacing: 0.03em;
+        white-space: nowrap;
+        display: inline-block;
+      }
+
+      /* Socials Background Text - Repeating Pattern */
+      .socials-bg-pattern {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+      }
+
+      .socials-bg-text-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+
+      .socials-bg-text-row {
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        line-height: 0.85;
+      }
+
+      .socials-bg-text {
         font-size: clamp(2.5rem, 8vw, 10rem);
         letter-spacing: 0.03em;
         white-space: nowrap;
@@ -253,17 +283,26 @@
         position: relative;
         border-radius: 1.5rem;
         overflow: hidden;
+        isolation: isolate;
+        background:
+          linear-gradient(135deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.16) 100%);
+        border: 1px solid rgba(255, 255, 255, 0.38);
+        box-shadow:
+          0 18px 48px rgba(17, 17, 17, 0.1),
+          inset 0 1px 0 rgba(255, 255, 255, 0.45);
         transform: translateY(0);
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
-        backdrop-filter: blur(5px) saturate(120%);
-        -webkit-backdrop-filter: blur(5px) saturate(120%);
+        transition:
+          transform 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+          box-shadow 0.35s ease,
+          border-color 0.35s ease;
       }
 
       .liquid-glass-card:hover {
-        transform: translateY(-8px) scale(1.01);
-        box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2);
-        backdrop-filter: blur(15px) saturate(130%);
-        -webkit-backdrop-filter: blur(15px) saturate(130%);
+        transform: translateY(-6px);
+        border-color: rgba(255, 255, 255, 0.55);
+        box-shadow:
+          0 24px 56px rgba(17, 17, 17, 0.14),
+          inset 0 1px 0 rgba(255, 255, 255, 0.55);
       }
 
       .liquid-glass-content {
@@ -272,83 +311,48 @@
         pointer-events: auto;
       }
 
-      .liquid-glass-canvas {
+      .liquid-glass-sheen,
+      .liquid-glass-glow {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        z-index: 1;
         pointer-events: none;
         border-radius: inherit;
-        overflow: hidden;
-        backdrop-filter: blur(12px) saturate(120%);
-        -webkit-backdrop-filter: blur(12px) saturate(120%);
       }
 
-      .liquid-glass-canvas canvas {
-        width: 100% !important;
-        height: 100% !important;
-        display: block;
+      .liquid-glass-sheen {
+        z-index: 1;
+        background:
+          linear-gradient(120deg, rgba(255, 255, 255, 0.38), transparent 45%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.12), transparent 55%);
+        opacity: 0.9;
       }
 
-      /* CSS Fallback for non-WebGL browsers */
-      .liquid-glass-fallback {
-        position: relative;
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.01) 0%,
-          rgba(255, 255, 255, 0.008) 50%,
-          rgba(255, 255, 255, 0.005) 100%
-        );
-        backdrop-filter: blur(12px) saturate(120%);
-        -webkit-backdrop-filter: blur(12px) saturate(120%);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-        box-shadow: 
-          0 8px 32px 0 rgba(0, 0, 0, 0.02),
-          inset 0 1px 0 0 rgba(255, 255, 255, 0.05),
-          inset 0 -1px 0 0 rgba(255, 255, 255, 0.02);
-        transform: translateY(0);
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.5s ease;
-      }
-
-      .liquid-glass-fallback:hover {
-        background: linear-gradient(
-          135deg,
-          rgba(255, 255, 255, 0.02) 0%,
-          rgba(255, 255, 255, 0.015) 50%,
-          rgba(255, 255, 255, 0.01) 100%
-        );
-        backdrop-filter: blur(15px) saturate(130%);
-        -webkit-backdrop-filter: blur(15px) saturate(130%);
-        border-color: rgba(255, 255, 255, 0.08);
-        box-shadow: 
-          0 20px 60px 0 rgba(0, 0, 0, 0.03),
-          inset 0 1px 0 0 rgba(255, 255, 255, 0.08),
-          inset 0 -1px 0 0 rgba(255, 255, 255, 0.04);
-        transform: translateY(-8px) scale(1.01);
+      .liquid-glass-glow {
+        z-index: 2;
+        background:
+          radial-gradient(circle at top right, rgba(214, 254, 81, 0.18), transparent 30%),
+          radial-gradient(circle at bottom left, rgba(255, 255, 255, 0.24), transparent 40%);
+        mix-blend-mode: screen;
+        opacity: 0.75;
       }
 
       /* Performance optimizations for mobile */
       @media (max-width: 768px) {
-        .liquid-glass-canvas {
-          opacity: 0.8;
-        }
-        
         .liquid-glass-card:hover {
-          transform: translateY(-4px) scale(1.005);
+          transform: translateY(-3px);
         }
       }
 
       /* Reduce motion for accessibility */
       @media (prefers-reduced-motion: reduce) {
-        .liquid-glass-card,
-        .liquid-glass-fallback {
+        .liquid-glass-card {
           transition: none;
         }
         
-        .liquid-glass-card:hover,
-        .liquid-glass-fallback:hover {
+        .liquid-glass-card:hover {
           transform: none;
         }
       }
@@ -393,9 +397,9 @@
           opacity: 0;
         }
       }
+
     </style>
 
-<link rel="stylesheet" href="/index.css">
   <script type="importmap">
 {
   "imports": {
@@ -406,7 +410,7 @@
   }
 }
 </script>
-  <script type="module" crossorigin src="/assets/index-B55X7pMD.js"></script>
+  <script type="module" crossorigin src="/assets/index-DfIUjssj.js"></script>
 </head>
   <body>
     <div id="root"></div>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useRef } from "react";
-import { PERSONAL_INFO } from "../constants";
 import { ArrowDownLeft, Asterisk } from "lucide-react";
 
 import ShootingStars from "./ShootingStars";
@@ -164,7 +163,7 @@ const Hero: React.FC = () => {
 
 				{/* Abstract 3D Glass Element - Between Sky and Land */}
 				<div
-					className="absolute animate-float-slow pointer-events-none z-10"
+					className="absolute pointer-events-none z-10"
 					style={{
 						top: `${glassPosition.top}px`,
 						left: `${glassPosition.left}px`,
@@ -181,7 +180,7 @@ const Hero: React.FC = () => {
 									"radial-gradient(ellipse at 90% 20%, #d330b8 0%, #d330b8 30%, #e9bd3f 60%, #f5c842 80%, #ffd700 100%)",
 							}}
 						></div>
-						<div className="absolute inset-4 bg-white/30 backdrop-blur-xl rounded-full border border-white/50 shadow-2xl flex items-center justify-center overflow-hidden">
+						<div className="absolute inset-4 bg-white/25 rounded-full border border-white/50 shadow-2xl flex items-center justify-center overflow-hidden">
 							<div
 								className="absolute inset-0 rounded-full"
 								style={{
@@ -195,7 +194,7 @@ const Hero: React.FC = () => {
 
 				{/* Second Abstract 3D Glass Element - Cyan - Between Sky and Land */}
 				<div
-					className="absolute animate-float-slow pointer-events-none z-10"
+					className="absolute pointer-events-none z-10"
 					style={{
 						top: `${glassPosition2.top}px`,
 						left: `${glassPosition2.left}px`,
@@ -212,7 +211,7 @@ const Hero: React.FC = () => {
 									"radial-gradient(ellipse at 90% 20%, #33dccf 0%, #33dccf 30%, #4ae5d8 60%, #5fece0 80%, #6ffff5 100%)",
 							}}
 						></div>
-						<div className="absolute inset-4 bg-white/30 backdrop-blur-xl rounded-full border border-white/50 shadow-2xl flex items-center justify-center overflow-hidden">
+						<div className="absolute inset-4 bg-white/25 rounded-full border border-white/50 shadow-2xl flex items-center justify-center overflow-hidden">
 							<div
 								className="absolute inset-0 rounded-full"
 								style={{
@@ -226,7 +225,7 @@ const Hero: React.FC = () => {
 
 				{/* Third Abstract 3D Glass Element - Purple to Pink - Between Sky and Land */}
 				<div
-					className="absolute animate-float-slow pointer-events-none z-10"
+					className="absolute pointer-events-none z-10"
 					style={{
 						top: `${glassPosition3.top}px`,
 						left: `${glassPosition3.left}px`,
@@ -243,7 +242,7 @@ const Hero: React.FC = () => {
 									"radial-gradient(ellipse at 10% 50%, #6d0cff 0%, #6d0cff 10%, #8a2fff 25%, #b84aff 38%, #ec07f5 45%, #ff0aff 70%, #ff00ff 100%)",
 							}}
 						></div>
-						<div className="absolute inset-4 bg-white/30 backdrop-blur-xl rounded-full border border-white/50 shadow-2xl flex items-center justify-center overflow-hidden">
+						<div className="absolute inset-4 bg-white/25 rounded-full border border-white/50 shadow-2xl flex items-center justify-center overflow-hidden">
 							<div
 								className="absolute inset-0 rounded-full"
 								style={{

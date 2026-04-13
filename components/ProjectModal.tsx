@@ -195,6 +195,7 @@ const ProjectModal: React.FC<ProjectModalProps> = ({ isOpen, onClose, project })
                     src={project.imagePlaceholder} 
                     alt={project.title} 
                     className="w-full h-full object-cover"
+                    decoding="async"
                  />
                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                  

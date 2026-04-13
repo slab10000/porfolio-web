@@ -3,7 +3,11 @@ import { SKILL_CATEGORIES, EDUCATION } from '../constants';
 
 const Skills: React.FC = () => {
   return (
-    <section id="skills" className="py-24 bg-swiss-black text-white relative overflow-hidden">
+    <section
+      id="skills"
+      className="py-24 bg-swiss-black text-white relative overflow-hidden"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '1000px' }}
+    >
       
       {/* Abstract Background Shape */}
       <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-swiss-blue rounded-full blur-[150px] opacity-20 pointer-events-none"></div>

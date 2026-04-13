@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect, useCallback } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 
 interface StarProps {
   color: string;
@@ -45,6 +45,17 @@ const neonColors = [
 ];
 
 const ShootingStars: React.FC = () => {
+  const [effectsEnabled, setEffectsEnabled] = useState(false);
+
+  useEffect(() => {
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hardwareConcurrency = navigator.hardwareConcurrency || 8;
+    const navigatorWithMemory = navigator as Navigator & { deviceMemory?: number };
+    const deviceMemory = navigatorWithMemory.deviceMemory || 8;
+
+    setEffectsEnabled(!reducedMotion && hardwareConcurrency > 4 && deviceMemory > 4);
+  }, []);
+
   // Interactive stars from clicks
   const [interactiveStars, setInteractiveStars] = useState<{
     id: number;
@@ -60,6 +71,8 @@ const ShootingStars: React.FC = () => {
   };
 
   useEffect(() => {
+    if (!effectsEnabled) return;
+
     const heroSection = document.getElementById('home');
     if (!heroSection) return;
 
@@ -88,11 +101,15 @@ const ShootingStars: React.FC = () => {
 
     heroSection.addEventListener('click', handleClick);
     return () => heroSection.removeEventListener('click', handleClick);
-  }, []);
+  }, [effectsEnabled]);
 
   // Base background stars (reduced ratio)
   const baseStars = useMemo(() => {
-    return Array.from({ length: 20 }).map((_, i) => {
+    if (!effectsEnabled) {
+      return [];
+    }
+
+    return Array.from({ length: 8 }).map((_, i) => {
       // Always start from top
       const top = `${-20 - Math.random() * 20}%`; 
       const right = `${-10 + Math.random() * 120}%`; // From -10% to 110% to cover full width
@@ -106,7 +123,11 @@ const ShootingStars: React.FC = () => {
         duration: `${2 + Math.random() * 3}s`,
       };
     });
-  }, []);
+  }, [effectsEnabled]);
+
+  if (!effectsEnabled && interactiveStars.length === 0) {
+    return null;
+  }
 
   return (
     <div className="absolute inset-0 w-full h-full pointer-events-none overflow-hidden z-[15]">

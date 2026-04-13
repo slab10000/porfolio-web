@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { SOCIAL_MEDIA } from '../constants';
 import LiquidGlassCard from './LiquidGlassCard';
 import { ExternalLink } from 'lucide-react';
@@ -9,18 +9,16 @@ const Socials: React.FC = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
 
-  // Generate repeating pattern of social media words with randomized order
-  const generateSocialPattern = (count: number): string => {
+  const backgroundRows = useMemo(() => Array.from({ length: 15 }, () => {
     const words = ['Tiktok', 'Youtube', 'X', 'LinkedIn'];
-    // Shuffle the words array for this line
     const shuffledWords = [...words].sort(() => Math.random() - 0.5);
     let pattern = '';
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < 50; i++) {
       const word = shuffledWords[i % shuffledWords.length];
       pattern += word;
     }
     return pattern;
-  };
+  }), []);
 
   // Fetch follower counts on component mount
   useEffect(() => {
@@ -77,7 +75,11 @@ const Socials: React.FC = () => {
   };
 
   return (
-    <section id="socials" className="py-24 relative overflow-hidden">
+    <section
+      id="socials"
+      className="py-24 relative overflow-hidden"
+      style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' }}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="mb-20 border-b border-black pb-8">
@@ -93,10 +95,10 @@ const Socials: React.FC = () => {
         {/* Large Background Text - Repeating Pattern */}
         <div className="absolute inset-0 z-0 overflow-hidden socials-bg-pattern">
           <div className="socials-bg-text-container">
-            {Array(15).fill(null).map((_, i) => (
+            {backgroundRows.map((pattern, i) => (
               <div key={i} className="socials-bg-text-row">
                 <span className="font-display font-black text-black/10 select-none pointer-events-none socials-bg-text">
-                  {generateSocialPattern(50)}
+                  {pattern}
                 </span>
               </div>
             ))}
@@ -202,4 +204,3 @@ const Socials: React.FC = () => {
 };
 
 export default Socials;
-
